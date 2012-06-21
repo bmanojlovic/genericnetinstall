@@ -35,9 +35,8 @@ imgfree
 chain ${S}/boot/boot.php
 
 :genericredhat
-kernel  ${base-url}/images/pxeboot/vmlinuz
+kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url}
 initrd  ${base-url}/images/pxeboot/initrd.img
-imgargs vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url}
 boot
 
 :hypervisor

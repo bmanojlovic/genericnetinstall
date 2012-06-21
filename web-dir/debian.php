@@ -33,15 +33,13 @@ imgfree
 chain ${serverpath}/boot/boot.php
 
 :genericubuntu
-kernel  ${base-url}/boot/${arch}/loader/linux
+kernel  ${base-url}/boot/${arch}/loader/linux install=${base-url}
 initrd  ${base-url}/boot/${arch}/loader/initrd
-imgargs vmlinuz install=${base-url}
 boot
 
 :genericdebian
-kernel  ${base-url}/install${arch}/vmlinuz
+kernel  ${base-url}/install${arch}/vmlinuz video=vesa:ywrap,mtrr vga=788 initrd=/install${arch}/gtk/initrd.gz -- quiet auto=yes
 initrd  ${base-url}/install${arch}/initrd.gz
-imgargs vmlinuz video=vesa:ywrap,mtrr vga=788 initrd=/install${arch}/gtk/initrd.gz -- quiet auto=yes
 boot
 
 :debian605

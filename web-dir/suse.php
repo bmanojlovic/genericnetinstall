@@ -120,9 +120,7 @@ goto genericsuse
 
 :obsworker
 set base-url ${serverpath}/OBS-W-2.3.1/
-kernel ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.kernel.3.1.10-1.9-default
+kernel ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.kernel.3.1.10-1.9-default pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1
 initrd ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.gz
-imgargs initrd-netboot-suse-12.1.x86_64-2.1.1.kernel.3.1.10-1.9-default pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1
 boot
-
 :obsserver
