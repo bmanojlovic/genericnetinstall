@@ -10,7 +10,7 @@ F.A.Q.
 ### What part of it is web? pxe is NOT web!?
 
 True, but only partialy as great project called iPXE has done
-great job of making pxe environment very scriptable.
+great job of making pxe environment very scriptable AND supports http protocol.
 
 ### Which distros are supported?
 
