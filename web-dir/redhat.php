@@ -24,6 +24,7 @@ item          rhel6.2        Install Redhat Enterprise Linux 6.2
 item          rhel5.6        Install Redhat Enterprise Linux 5.6
 item          rhel5.5        Install Redhat Enterprise Linux 5.5
 item          fedora17       Install Fedora 17 64bit
+item          fedora18       Install Fedora 18 64bit
 item          centos5.4      Install CentOS 5.4
 item --gap --                -------------------- END ----------------------
 
