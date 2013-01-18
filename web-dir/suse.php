@@ -47,9 +47,8 @@ imgfree
 chain ${serverpath}/boot/boot.php
 
 :genericsuse
-kernel  ${base-url}/boot/${susearch}/loader/linux
+kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url}
 initrd  ${base-url}/boot/${susearch}/loader/initrd
-imgargs linux install=${base-url}
 boot
 
 :hypervisor
@@ -106,6 +105,11 @@ goto genericsuse
 :opensuse1210
 set susearch x86_64
 set base-url ${serverpath}/OS12.1-x64
+goto genericsuse
+
+:opensuse1220
+set susearch x86_64
+set base-url ${serverpath}/OS12.2-x64
 goto genericsuse
 
 :opensuse1120

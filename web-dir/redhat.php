@@ -23,6 +23,7 @@ item --key h  hypervisor     Boot Redhat HiperVisor live image
 item          rhel6.2        Install Redhat Enterprise Linux 6.2
 item          rhel5.6        Install Redhat Enterprise Linux 5.6
 item          rhel5.5        Install Redhat Enterprise Linux 5.5
+item          fedora17       Install Fedora 17 64bit
 item          centos5.4      Install CentOS 5.4
 item --gap --                -------------------- END ----------------------
 
@@ -36,6 +37,11 @@ chain ${S}/boot/boot.php
 
 :genericredhat
 kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url}
+initrd  ${base-url}/images/pxeboot/initrd.img
+boot
+
+:genericfedora
+kernel  ${base-url}/images/pxeboot/vmlinuz ksdevice=eth0 repo=${base-url} method=${base-url} lowres
 initrd  ${base-url}/images/pxeboot/initrd.img
 boot
 
@@ -55,3 +61,11 @@ goto genericredhat
 :centos5.4
 set base-url ${serverpath}/CentOS-5.4-x64
 goto genericredhat
+
+:fedora17
+set base-url ${serverpath}/Fedora-17-x86_64
+goto genericfedora
+
+:fedora18
+set base-url ${serverpath}/Fedora-18-x86_64
+goto genericfedora

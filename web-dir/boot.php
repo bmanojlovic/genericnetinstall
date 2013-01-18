@@ -21,6 +21,8 @@ item --gap --           ------------------- OS images ----------------
 item --key s suse       SUSE based distributions (openSUSE and SLE)
 item --key r redhat     RedHat based distributions (RedHat and Centos)
 item --key d debian     Debian based distributions (Debian and Ubuntu)
+item --key a arch       Arch based distribtion
+item --key f freedos    FreeDOS
 item --gap --           ----------- Old based PXE linux menu ---------
 item --key p pxelinux   PXElinux menu based system
 item --gap --           --------------- Advanced Menu ----------------

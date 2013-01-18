@@ -19,10 +19,7 @@ menu Install selection for ${distrotype} based distros
 item --gap --                    ------------- Return to main menu ------------
 item --key b  back               Back to main menu
 item --gap --                    ----------------------------------------------
-item          ubuntu1204server   Install Ubuntu Server 12.04
-item          ubuntu1204         Install Ubuntu 12.04
-item          debian605          Install Debian 6.0.5 Network
-item          debian606          Install Debian 6.0.6 Network
+item          freedos            Run FreeDOS
 item --gap --                    -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -33,23 +30,7 @@ goto ${selected}
 imgfree
 chain ${serverpath}/boot/boot.php
 
-:genericubuntu
-kernel  ${base-url}/boot/${arch}/loader/linux install=${base-url}
-initrd  ${base-url}/boot/${arch}/loader/initrd
+:freedos
+kernel  ${serverpath}/boot/memdisk initrd=fdboot.img
+initrd  ${serverpath}/boot/fdboot.img
 boot
-
-:genericdebian
-kernel  ${base-url}/install${arch}/vmlinuz video=vesa:ywrap,mtrr vga=788 initrd=/install${arch}/gtk/initrd.gz -- quiet auto=yes
-initrd  ${base-url}/install${arch}/initrd.gz
-boot
-
-:debian605
-set arch .amd
-set base-url ${serverpath}/DEB-6.0.5-amd64
-goto genericdebian
-
-:debian606   
-set arch .amd
-set base-url ${serverpath}/DEB-6.0.6-amd64
-goto genericdebian
-
