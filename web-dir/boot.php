@@ -12,6 +12,10 @@ echo "set distrotype $D\n";
 # Ensure we have menu-default set to something
 isset ${menu-default} || set menu-default shell
 
+# bring interface up and do dhcp magic...
+ifopen net0 ||
+dhcp net0 ||
+
 set menu-timeout 5000
 
 :startmenu
@@ -22,6 +26,7 @@ item --key s suse       SUSE based distributions (openSUSE and SLE)
 item --key r redhat     RedHat based distributions (RedHat and Centos)
 item --key d debian     Debian based distributions (Debian and Ubuntu)
 item --key a arch       Arch based distribtion
+item --key z clonezilla Clonezilla Live
 item --key f freedos    FreeDOS
 item --gap --           ----------- Old based PXE linux menu ---------
 item --key p pxelinux   PXElinux menu based system
@@ -63,6 +68,17 @@ chain ${serverpath}/boot/redhat.php
 
 :debian
 chain ${serverpath}/boot/debian.php
+
+
+:freedos
+chain ${serverpath}/boot/freedos.php
+
+:clonezilla
+chain ${serverpath}/boot/clonezilla.php
+
+:arch
+#chain ${serverpath}/boot/arch.php
+set filename ${210:string}/ipxe.pxe
 
 :pxelinux
 imgfree

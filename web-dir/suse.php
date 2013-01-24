@@ -31,6 +31,7 @@ item          sles10sp3-32   Install SUSE Enterprise 10 SP 3 32bit
 item          sles10sp2      Install SUSE Enterprise 10 SP 2
 item          sles10sp2-32   Install SUSE Enterprise 10 SP 3 32bit
 item          opensuse1210   Install openSUSE 12.1
+item          opensuse1220   Install openSUSE 12.2
 item          opensuse1120   Install openSUSE 11.2
 item          sles11sp1-pp64 Install SUSE Enterprise 11 SP 1 POWER
 item --gap --                -------------- Open Build Service -------------

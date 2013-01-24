@@ -23,6 +23,7 @@ item          ubuntu1204server   Install Ubuntu Server 12.04
 item          ubuntu1204         Install Ubuntu 12.04
 item          debian605          Install Debian 6.0.5 Network
 item          debian606          Install Debian 6.0.6 Network
+item          proxmox22          Install ProxMox Virtualization Platform 2.2 
 item --gap --                    -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -43,13 +44,22 @@ kernel  ${base-url}/install${arch}/vmlinuz video=vesa:ywrap,mtrr vga=788 initrd=
 initrd  ${base-url}/install${arch}/initrd.gz
 boot
 
+:genericproxmox
+kernel  ${base-url}/boot/isolinux/linux26 video=vesa:ywrap,mtrr vga=788 initrd=/boot/isolinux/initrd.img -- quiet auto=yes
+initrd  ${base-url}/boot/isolinux/initrd.img
+boot
+
 :debian605
 set arch .amd
 set base-url ${serverpath}/DEB-6.0.5-amd64
 goto genericdebian
 
-:debian606   
+:debian606
 set arch .amd
 set base-url ${serverpath}/DEB-6.0.6-amd64
 goto genericdebian
+
+:proxmox22
+set base-url ${serverpath}/proxmox-2.2-x64
+goto genericproxmox
 
