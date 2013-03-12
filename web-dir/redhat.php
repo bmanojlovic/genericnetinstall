@@ -25,6 +25,8 @@ item          rhel5.6        Install Redhat Enterprise Linux 5.6
 item          rhel5.5        Install Redhat Enterprise Linux 5.5
 item          fedora17       Install Fedora 17 64bit
 item          fedora18       Install Fedora 18 64bit
+item          centos6.4      Install CentOS 6.4
+item          centos6.3      Install CentOS 6.3
 item          centos5.4      Install CentOS 5.4
 item --gap --                -------------------- END ----------------------
 
@@ -59,9 +61,18 @@ goto genericredhat
 set base-url ${serverpath}/RHEL-5.5-x64
 goto genericredhat
 
+:centos6.3
+set base-url ${serverpath}/CentOS-6.3-x86_64
+goto genericredhat
+
+:centos6.4
+set base-url ${serverpath}/CentOS-6.4-x86_64
+goto genericredhat
+
 :centos5.4
 set base-url ${serverpath}/CentOS-5.4-x64
 goto genericredhat
+
 
 :fedora17
 set base-url ${serverpath}/Fedora-17-x86_64

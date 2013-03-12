@@ -30,8 +30,9 @@ item          sles10sp3      Install SUSE Enterprise 10 SP 3
 item          sles10sp3-32   Install SUSE Enterprise 10 SP 3 32bit
 item          sles10sp2      Install SUSE Enterprise 10 SP 2
 item          sles10sp2-32   Install SUSE Enterprise 10 SP 3 32bit
-item          opensuse1210   Install openSUSE 12.1
+item          opensuse1230   Install openSUSE 12.3
 item          opensuse1220   Install openSUSE 12.2
+item          opensuse1210   Install openSUSE 12.1
 item          opensuse1120   Install openSUSE 11.2
 item          sles11sp1-pp64 Install SUSE Enterprise 11 SP 1 POWER
 item --gap --                -------------- Open Build Service -------------
@@ -103,14 +104,19 @@ set susearch i386
 set base-url ${serverpath}/SLES10SP2-x86
 goto genericsuse
 
-:opensuse1210
+:opensuse1230
 set susearch x86_64
-set base-url ${serverpath}/OS12.1-x64
+set base-url ${serverpath}/OS12.3-x64
 goto genericsuse
 
 :opensuse1220
 set susearch x86_64
 set base-url ${serverpath}/OS12.2-x64
+goto genericsuse
+
+:opensuse1210
+set susearch x86_64
+set base-url ${serverpath}/OS12.1-x64
 goto genericsuse
 
 :opensuse1120
@@ -125,7 +131,8 @@ goto genericsuse
 
 :obsworker
 set base-url ${serverpath}/OBS-W-2.3.1/
-kernel ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.kernel.3.1.10-1.9-default pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1
+kernel ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.kernel pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1
 initrd ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.gz
 boot
+
 :obsserver
