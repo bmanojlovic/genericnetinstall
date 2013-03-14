@@ -22,6 +22,9 @@ http as protocol for downloading files after initial boot of kernel
 You have to set up few things in configuration of dhcpd as suggested bellow
 where server ip address is 10.10.10.10:
 
+    # bellow is used for diferentiation between legacy and efi boot
+    option client-architecture code 93 = unsigned integer 16;
+
     option domain-name "mygreatdomain.com";
     option domain-name-servers 10.10.10.1, 10.10.10.2;
     option routers 10.10.10.254;
@@ -71,7 +74,12 @@ where server ip address is 10.10.10.10:
     if exists user-class and option user-class = "iPXE" {
       filename "http://10.10.10.10/boot/boot.php";
     } else {
-      filename "undionly.kpxe";
+      if option client-architecture = 00:07 {
+        #UEFI client
+        filename "snponly.efi";
+      } else if option client-architecture = 00:00 {
+        filename "undionly.kpxe";
+      }
     }
 
     subnet 10.10.10.0 netmask 255.255.255.0 {
