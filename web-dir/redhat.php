@@ -20,6 +20,8 @@ item --gap --                ------------- Return to main menu ------------
 item --key b  back           Back to main menu
 item --gap --                ----------------------------------------------
 item --key h  hypervisor     Boot Redhat HiperVisor live image
+item          rhel6.4        Install Redhat Enterprise Linux 6.4
+item          rhel6.3        Install Redhat Enterprise Linux 6.3
 item          rhel6.2        Install Redhat Enterprise Linux 6.2
 item          rhel5.6        Install Redhat Enterprise Linux 5.6
 item          rhel5.5        Install Redhat Enterprise Linux 5.5
@@ -49,6 +51,14 @@ initrd  ${base-url}/images/pxeboot/initrd.img
 boot
 
 :hypervisor
+:rhel6.4
+set base-url ${serverpath}/RHEL-6.4-x64
+goto genericredhat
+
+:rhel6.3
+set base-url ${serverpath}/RHEL-6.3-x64
+goto genericredhat
+
 :rhel6.2
 set base-url ${serverpath}/RHEL-6.2-x64
 goto genericredhat

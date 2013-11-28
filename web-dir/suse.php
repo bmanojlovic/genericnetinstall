@@ -21,16 +21,14 @@ item --key b  back           Back to main menu
 item --gap --                ----------------------------------------------
 item --key h  hypervisor     Boot Suse HyperVisor
 
+item          sles11sp3wm    Install SUSE Enterprise 11 SP 3 for VMware 
 item          sles11sp2wm    Install SUSE Enterprise 11 SP 2 for VMware 
-item          sles11sp2      Install SUSE Enterprise 11 SP 2 
+item          sles11sp3      Install SUSE Enterprise 11 SP 3
+item          sles11sp2      Install SUSE Enterprise 11 SP 2
 item          sles11sp1      Install SUSE Enterprise 11 SP 1
-item          sles11sp1-32   Install SUSE Enterprise 11 SP 1 32bit
 item          sles11         Install SUSE Enterprise 11
-item          sles11-32      Install SUSE Enterprise 11 32bit
 item          sles10sp3      Install SUSE Enterprise 10 SP 3
-item          sles10sp3-32   Install SUSE Enterprise 10 SP 3 32bit
-item          sles10sp2      Install SUSE Enterprise 10 SP 2
-item          sles10sp2-32   Install SUSE Enterprise 10 SP 3 32bit
+item          opensuse1310   Install openSUSE 13.1
 item          opensuse1230   Install openSUSE 12.3
 item          opensuse1220   Install openSUSE 12.2
 item          opensuse1210   Install openSUSE 12.1
@@ -59,9 +57,19 @@ echo "Just Kidding for now"
 sleep 4
 goto back
 
+:sles11sp3
+set susearch x86_64
+set base-url ${serverpath}/SLES11SP3-x64
+goto genericsuse
+
 :sles11sp2
 set susearch x86_64
 set base-url ${serverpath}/SLES11SP2-x64
+goto genericsuse
+
+:sles11sp3wm
+set susearch x86_64
+set base-url ${serverpath}/SLES-11-SP3-for-VMware-DVD-x86_64
 goto genericsuse
 
 :sles11sp2wm
@@ -69,15 +77,9 @@ set susearch x86_64
 set base-url ${serverpath}/SLES-11-SP2-for-VMware-DVD-x86_64
 goto genericsuse
 
-
 :sles11sp1
 set susearch x86_64
 set base-url ${serverpath}/SLES11SP1-x64
-goto genericsuse
-
-:sles11sp1-32
-set susearch i386
-set base-url ${serverpath}/SLES11SP1-x86
 goto genericsuse
 
 :sles11
@@ -85,29 +87,14 @@ set susearch x86_64
 set base-url ${serverpath}/SLES11-x64
 goto genericsuse
 
-:sles11-32
-set susearch i386
-set base-url ${serverpath}/SLES11-x86
-goto genericsuse
-
-:sles10sp3-32
-set susearch i386
-set base-url ${serverpath}/SLES10SP3-x86
-goto genericsuse
-
 :sles10sp3
 set susearch x86_64
 set base-url ${serverpath}/SLES10SP3-x64
 goto genericsuse
 
-:sles10sp2
+:opensuse1310
 set susearch x86_64
-set base-url ${serverpath}/SLES10SP2-x64
-goto genericsuse
-
-:sles10sp2-32
-set susearch i386
-set base-url ${serverpath}/SLES10SP2-x86
+set base-url ${serverpath}/OS13.1-x64
 goto genericsuse
 
 :opensuse1230
