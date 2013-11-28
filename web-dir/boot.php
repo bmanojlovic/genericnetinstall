@@ -13,8 +13,8 @@ echo "set distrotype $D\n";
 isset ${menu-default} || set menu-default shell
 
 # bring interface up and do dhcp magic...
-ifopen net0 ||
-dhcp net0 ||
+ifopen net0 || goto shell
+dhcp net0 || goto shell
 
 set menu-timeout 5000
 
