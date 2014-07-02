@@ -21,12 +21,15 @@ item --key b  back           Back to main menu
 item --gap --                ----------------------------------------------
 item --key h  hypervisor     Boot Redhat HiperVisor live image
 item          rhel6.4        Install Redhat Enterprise Linux 6.4
+item          ol65           Install Oracle (Redhat) Enterprise Linux 6.5
 item          rhel6.3        Install Redhat Enterprise Linux 6.3
 item          rhel6.2        Install Redhat Enterprise Linux 6.2
 item          rhel5.6        Install Redhat Enterprise Linux 5.6
 item          rhel5.5        Install Redhat Enterprise Linux 5.5
 item          fedora17       Install Fedora 17 64bit
 item          fedora18       Install Fedora 18 64bit
+item          centos6.5      Install CentOS 6.5
+item          centos6.5text  Install CentOS 6.5 text mode
 item          centos6.4      Install CentOS 6.4
 item          centos6.3      Install CentOS 6.3
 item          centos5.4      Install CentOS 5.4
@@ -45,6 +48,11 @@ kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks k
 initrd  ${base-url}/images/pxeboot/initrd.img
 boot
 
+:genericredhattext
+kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url} text
+initrd  ${base-url}/images/pxeboot/initrd.img
+boot
+
 :genericfedora
 kernel  ${base-url}/images/pxeboot/vmlinuz ksdevice=eth0 repo=${base-url} method=${base-url} lowres
 initrd  ${base-url}/images/pxeboot/initrd.img
@@ -55,8 +63,16 @@ boot
 set base-url ${serverpath}/RHEL-6.4-x64
 goto genericredhat
 
+:ol65
+set base-url ${serverpath}/OL6.5-x86_64
+goto genericredhat
+
 :rhel6.3
 set base-url ${serverpath}/RHEL-6.3-x64
+goto genericredhat
+
+:rhel6.4
+set base-url ${serverpath}/RHEL-6.4-x64
 goto genericredhat
 
 :rhel6.2
@@ -71,12 +87,20 @@ goto genericredhat
 set base-url ${serverpath}/RHEL-5.5-x64
 goto genericredhat
 
-:centos6.3
-set base-url ${serverpath}/CentOS-6.3-x86_64
+:centos6.5
+set base-url ${serverpath}/CentOS-6.5-x86_64
 goto genericredhat
+
+:centos6.5text
+set base-url ${serverpath}/CentOS-6.5-x86_64
+goto genericredhattext
 
 :centos6.4
 set base-url ${serverpath}/CentOS-6.4-x86_64
+goto genericredhat
+
+:centos6.3
+set base-url ${serverpath}/CentOS-6.3-x86_64
 goto genericredhat
 
 :centos5.4

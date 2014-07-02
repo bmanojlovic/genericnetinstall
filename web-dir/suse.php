@@ -23,7 +23,9 @@ item --key h  hypervisor     Boot Suse HyperVisor
 
 item          sles11sp3wm    Install SUSE Enterprise 11 SP 3 for VMware 
 item          sles11sp2wm    Install SUSE Enterprise 11 SP 2 for VMware 
+item          rescue         SUSE Enterprise 11 SP 3 Rescue
 item          sles11sp3      Install SUSE Enterprise 11 SP 3
+item          sles11sp3a     Auto Install SUSE Enterprise 11 SP 3
 item          sles11sp2      Install SUSE Enterprise 11 SP 2
 item          sles11sp1      Install SUSE Enterprise 11 SP 1
 item          sles11         Install SUSE Enterprise 11
@@ -52,6 +54,16 @@ kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url}
 initrd  ${base-url}/boot/${susearch}/loader/initrd
 boot
 
+:genericsusea
+kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url} autoyast=http://10.161.81.1/z.xml
+initrd  ${base-url}/boot/${susearch}/loader/initrd
+boot
+
+:genericsuser
+kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url} rescue=1
+initrd  ${base-url}/boot/${susearch}/loader/initrd
+boot
+
 :hypervisor
 echo "Just Kidding for now"
 sleep 4
@@ -61,6 +73,16 @@ goto back
 set susearch x86_64
 set base-url ${serverpath}/SLES11SP3-x64
 goto genericsuse
+
+:sles11sp3a
+set susearch x86_64
+set base-url ${serverpath}/SLES11SP3-x64
+goto genericsusea
+
+:rescue
+set susearch x86_64
+set base-url ${serverpath}/SLES11SP3-x64
+goto genericsuser
 
 :sles11sp2
 set susearch x86_64
@@ -122,10 +144,15 @@ set susearch pp64
 set base-url ${serverpath}/SLES11SP1-pp64-DVD1
 goto genericsuse
 
+:obsserver
+set base-url ${serverpath}/obs-server.x86_64
+kernel ${base-url}/boot/linux pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1 ip=${netX/ip}:${netX/next-server}:${netX/gateway}:${netX/netmask}
+initrd ${base-url}/boot/initrd
+boot
+
 :obsworker
 set base-url ${serverpath}/OBS-W-2.3.1/
 kernel ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.kernel pxe=1 kiwiservertype=http kiwiserver=${serverip} kiwidebug=1
 initrd ${base-url}initrd-netboot-suse-12.1.x86_64-2.1.1.gz
 boot
 
-:obsserver
