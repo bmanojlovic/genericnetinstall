@@ -8,6 +8,8 @@ echo "set serverpath $S\n";
 echo "set serverip $IP\n";
 echo "set distrotype $D\n";
 ?>
+# set logo for background
+console -x 1024 -y 768 -p ${serverpath}/boot/logo.png ||
 
 # Ensure we have menu-default set to something
 isset ${menu-default} || set menu-default shell
@@ -28,6 +30,7 @@ item --key d debian     Debian based distributions (Debian and Ubuntu)
 item --key a arch       Arch based distribtion
 item --key z clonezilla Clonezilla Live
 item --key f freedos    FreeDOS
+item --key o coreos     CoreOS Current
 item --gap --           ----------- Old based PXE linux menu ---------
 item --key p pxelinux   PXElinux menu based system
 item --gap --           --------------- Advanced Menu ----------------

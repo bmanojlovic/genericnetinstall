@@ -35,8 +35,9 @@ imgfree
 chain ${serverpath}/boot/boot.php
 
 :genericubuntu
-kernel  ${base-url}/boot/${arch}/loader/linux install=${base-url}
-initrd  ${base-url}/boot/${arch}/loader/initrd
+kernel  ${base-url}/install/vmlinuz install=${base-url}
+#kernel  ${base-url}/install/vmlinuz video=vesa:ywrap,mtrr vga=788 initrd=/install/initrd.gz -- quiet auto=yes
+initrd  ${base-url}/install/netboot/ubuntu-installer/amd64/initrd.gz
 boot
 
 :genericdebian
@@ -48,6 +49,20 @@ boot
 kernel  ${base-url}/boot/isolinux/linux26 video=vesa:ywrap,mtrr vga=788 initrd=/boot/isolinux/initrd.img -- quiet auto=yes
 initrd  ${base-url}/boot/isolinux/initrd.img
 boot
+
+:debian750i386
+set arch .i386
+set base-url ${serverpath}/DEB-7.5.0-i386
+goto genericdebian
+
+:debian750amd64
+set arch .amd
+set base-url ${serverpath}/DEB-7.5.0-amd64
+goto genericdebian
+
+:ubuntu1204server
+set base-url ${serverpath}/U-12.04-SRV-amd64
+goto genericubuntu
 
 :debian605
 set arch .amd
@@ -62,4 +77,3 @@ goto genericdebian
 :proxmox22
 set base-url ${serverpath}/proxmox-2.2-x64
 goto genericproxmox
-

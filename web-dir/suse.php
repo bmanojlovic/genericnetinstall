@@ -21,21 +21,21 @@ item --key b  back           Back to main menu
 item --gap --                ----------------------------------------------
 item --key h  hypervisor     Boot Suse HyperVisor
 
-item          sles11sp3wm    Install SUSE Enterprise 11 SP 3 for VMware 
-item          sles11sp2wm    Install SUSE Enterprise 11 SP 2 for VMware 
-item          rescue         SUSE Enterprise 11 SP 3 Rescue
+item --gap --                -------------- SLE 12 -------------
+item          sles12         Install SUSE Enterprise 12 Legacy Boot
+item          sles12uefi     Install SUSE Enterprise 12 UEFI mode
+item          sles12r        Rescue SUSE Enterprise 12
+item --gap --                -------------- SLE 11 -------------
+item          sles11sp3wm    Install SUSE Enterprise 11 SP 3 for VMware
+item          sles11sp3r     Rescue SUSE Enterprise 11 SP 3
 item          sles11sp3      Install SUSE Enterprise 11 SP 3
 item          sles11sp3a     Auto Install SUSE Enterprise 11 SP 3
 item          sles11sp2      Install SUSE Enterprise 11 SP 2
-item          sles11sp1      Install SUSE Enterprise 11 SP 1
-item          sles11         Install SUSE Enterprise 11
+item --gap --                -------------- SLE 10 -------------
 item          sles10sp3      Install SUSE Enterprise 10 SP 3
+item --gap --                -------------- openSUSE -------------
 item          opensuse1310   Install openSUSE 13.1
 item          opensuse1230   Install openSUSE 12.3
-item          opensuse1220   Install openSUSE 12.2
-item          opensuse1210   Install openSUSE 12.1
-item          opensuse1120   Install openSUSE 11.2
-item          sles11sp1-pp64 Install SUSE Enterprise 11 SP 1 POWER
 item --gap --                -------------- Open Build Service -------------
 item          obsworker      OBS Worker Installer
 item          obsserver      OBS Server Installer
@@ -55,7 +55,7 @@ initrd  ${base-url}/boot/${susearch}/loader/initrd
 boot
 
 :genericsusea
-kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url} autoyast=http://10.161.81.1/z.xml
+kernel  ${base-url}/boot/${susearch}/loader/linux install=${base-url} autoyast=http://${serverip}/mqtest.xml
 initrd  ${base-url}/boot/${susearch}/loader/initrd
 boot
 
@@ -69,6 +69,16 @@ echo "Just Kidding for now"
 sleep 4
 goto back
 
+:sles12
+set susearch x86_64
+set base-url ${serverpath}/SLES12-x86_64
+goto genericsuse
+
+:sles12r
+set susearch x86_64
+set base-url ${serverpath}/SLES12-x86_64
+goto genericsuser
+
 :sles11sp3
 set susearch x86_64
 set base-url ${serverpath}/SLES11SP3-x64
@@ -79,7 +89,7 @@ set susearch x86_64
 set base-url ${serverpath}/SLES11SP3-x64
 goto genericsusea
 
-:rescue
+:suse11sp3r
 set susearch x86_64
 set base-url ${serverpath}/SLES11SP3-x64
 goto genericsuser
@@ -94,21 +104,6 @@ set susearch x86_64
 set base-url ${serverpath}/SLES-11-SP3-for-VMware-DVD-x86_64
 goto genericsuse
 
-:sles11sp2wm
-set susearch x86_64
-set base-url ${serverpath}/SLES-11-SP2-for-VMware-DVD-x86_64
-goto genericsuse
-
-:sles11sp1
-set susearch x86_64
-set base-url ${serverpath}/SLES11SP1-x64
-goto genericsuse
-
-:sles11
-set susearch x86_64
-set base-url ${serverpath}/SLES11-x64
-goto genericsuse
-
 :sles10sp3
 set susearch x86_64
 set base-url ${serverpath}/SLES10SP3-x64
@@ -119,29 +114,14 @@ set susearch x86_64
 set base-url ${serverpath}/OS13.1-x64
 goto genericsuse
 
+:opensuse1320
+set susearch x86_64
+set base-url ${serverpath}/OS13.2-x64
+goto genericsuse
+
 :opensuse1230
 set susearch x86_64
 set base-url ${serverpath}/OS12.3-x64
-goto genericsuse
-
-:opensuse1220
-set susearch x86_64
-set base-url ${serverpath}/OS12.2-x64
-goto genericsuse
-
-:opensuse1210
-set susearch x86_64
-set base-url ${serverpath}/OS12.1-x64
-goto genericsuse
-
-:opensuse1120
-set susearch x86_64
-set base-url ${serverpath}/OS11.2-x64
-goto genericsuse
-
-:sles11sp1-pp64
-set susearch pp64
-set base-url ${serverpath}/SLES11SP1-pp64-DVD1
 goto genericsuse
 
 :obsserver
