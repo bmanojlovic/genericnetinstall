@@ -76,6 +76,9 @@ chain ${serverpath}/boot/debian.php
 :freedos
 chain ${serverpath}/boot/freedos.php
 
+:coreos
+chain ${serverpath}/boot/coreos.php
+
 :clonezilla
 chain ${serverpath}/boot/clonezilla.php
 

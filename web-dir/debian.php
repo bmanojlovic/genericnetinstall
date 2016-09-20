@@ -19,11 +19,9 @@ menu Install selection for ${distrotype} based distros
 item --gap --                    ------------- Return to main menu ------------
 item --key b  back               Back to main menu
 item --gap --                    ----------------------------------------------
-item          ubuntu1204server   Install Ubuntu Server 12.04
-item          ubuntu1204         Install Ubuntu 12.04
-item          debian605          Install Debian 6.0.5 Network
-item          debian606          Install Debian 6.0.6 Network
-item          proxmox22          Install ProxMox Virtualization Platform 2.2 
+item          ubuntu1604server   Install Ubuntu Server 16.04
+item          debian860          Install Debian 8.6.0 Network
+item          proxmox42          Install ProxMox Virtualization Platform 4.2 
 item --gap --                    -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -46,34 +44,19 @@ initrd  ${base-url}/install${arch}/initrd.gz
 boot
 
 :genericproxmox
-kernel  ${base-url}/boot/isolinux/linux26 video=vesa:ywrap,mtrr vga=788 initrd=/boot/isolinux/initrd.img -- quiet auto=yes
-initrd  ${base-url}/boot/isolinux/initrd.img
+kernel  ${base-url}/boot/linux26 video=vesa:ywrap,mtrr vga=788 initrd=/boot/initrd.img -- quiet auto=yes
+initrd  ${base-url}/boot/initrd.img
 boot
 
-:debian750i386
-set arch .i386
-set base-url ${serverpath}/DEB-7.5.0-i386
-goto genericdebian
-
-:debian750amd64
+:debian860
 set arch .amd
-set base-url ${serverpath}/DEB-7.5.0-amd64
+set base-url ${serverpath}/DEB-8.6.0
 goto genericdebian
 
-:ubuntu1204server
-set base-url ${serverpath}/U-12.04-SRV-amd64
+:ubuntu1604server
+set base-url ${serverpath}/U-16.04-SRV
 goto genericubuntu
 
-:debian605
-set arch .amd
-set base-url ${serverpath}/DEB-6.0.5-amd64
-goto genericdebian
-
-:debian606
-set arch .amd
-set base-url ${serverpath}/DEB-6.0.6-amd64
-goto genericdebian
-
-:proxmox22
-set base-url ${serverpath}/proxmox-2.2-x64
+:proxmox42
+set base-url ${serverpath}/proxmox-4.2-x64
 goto genericproxmox

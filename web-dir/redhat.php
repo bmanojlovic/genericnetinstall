@@ -19,20 +19,15 @@ menu Install selection for ${distrotype} based distros
 item --gap --                ------------- Return to main menu ------------
 item --key b  back           Back to main menu
 item --gap --                ----------------------------------------------
-item --key h  hypervisor     Boot Redhat HiperVisor live image
-item          rhel6.4        Install Redhat Enterprise Linux 6.4
-item          ol65           Install Oracle (Redhat) Enterprise Linux 6.5
-item          rhel6.3        Install Redhat Enterprise Linux 6.3
-item          rhel6.2        Install Redhat Enterprise Linux 6.2
-item          rhel5.6        Install Redhat Enterprise Linux 5.6
-item          rhel5.5        Install Redhat Enterprise Linux 5.5
-item          fedora17       Install Fedora 17 64bit
-item          fedora18       Install Fedora 18 64bit
-item          centos6.5      Install CentOS 6.5
-item          centos6.5text  Install CentOS 6.5 text mode
-item          centos6.4      Install CentOS 6.4
-item          centos6.3      Install CentOS 6.3
-item          centos5.4      Install CentOS 5.4
+#item --key h  hypervisor     Boot Redhat HiperVisor live image
+item          rhel72         Install Redhat Enterprise Linux 7.2
+item          rhel68         Install Redhat Enterprise Linux 6.8
+item          ol71           Install Oracle (Redhat) Enterprise Linux 7.1
+item          ol68           Install Oracle (Redhat) Enterprise Linux 6.8
+item          fedora24       Install Fedora 24
+item          centos71       Install CentOS 7.1
+item          centos68       Install CentOS 6.8
+item          centos68text   Install CentOS 6.8 text mode
 item --gap --                -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -44,11 +39,22 @@ imgfree
 chain ${S}/boot/boot.php
 
 :genericredhat
+kernel  ${base-url}/images/pxeboot/vmlinuz repo=${base-url} method=${base-url}
+initrd  ${base-url}/images/pxeboot/initrd.img
+boot
+
+
+:genericredhattext
+kernel  ${base-url}/images/pxeboot/vmlinuz repo=${base-url} method=${base-url} text
+initrd  ${base-url}/images/pxeboot/initrd.img
+boot
+
+:genericredhat6
 kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url}
 initrd  ${base-url}/images/pxeboot/initrd.img
 boot
 
-:genericredhattext
+:genericredhattext6
 kernel  ${base-url}/images/pxeboot/vmlinuz ks=${base-url}/ks/generic_server.ks ksdevice=eth0 repo=${base-url} method=${base-url} text
 initrd  ${base-url}/images/pxeboot/initrd.img
 boot
@@ -59,59 +65,35 @@ initrd  ${base-url}/images/pxeboot/initrd.img
 boot
 
 :hypervisor
-:rhel6.4
-set base-url ${serverpath}/RHEL-6.4-x64
+:rhel68
+set base-url ${serverpath}/RHEL-6.8-x64
+goto genericredhat6
+
+:rhel72
+set base-url ${serverpath}/RHEL-7.2-x64
 goto genericredhat
 
-:ol65
-set base-url ${serverpath}/OL6.5-x86_64
+:ol71
+set base-url ${serverpath}/OL7.1-x86_64
 goto genericredhat
 
-:rhel6.3
-set base-url ${serverpath}/RHEL-6.3-x64
-goto genericredhat
+:ol68
+set base-url ${serverpath}/OL6.8-x86_64
+goto genericredhat6
 
-:rhel6.4
-set base-url ${serverpath}/RHEL-6.4-x64
-goto genericredhat
+:rhel68
+set base-url ${serverpath}/RHEL-6.8-x64
+goto genericredhat6
 
-:rhel6.2
-set base-url ${serverpath}/RHEL-6.2-x64
-goto genericredhat
+:centos68text
+set base-url ${serverpath}/CentOS-6.8-x86_64
+goto genericredhattext6
 
-:rhel5.6
-set base-url ${serverpath}/RHEL-5.6-x64
-goto genericredhat
+:centos68
+set base-url ${serverpath}/CentOS-6.8-x86_64
+goto genericredhat6
 
-:rhel5.5
-set base-url ${serverpath}/RHEL-5.5-x64
-goto genericredhat
-
-:centos6.5
-set base-url ${serverpath}/CentOS-6.5-x86_64
-goto genericredhat
-
-:centos6.5text
-set base-url ${serverpath}/CentOS-6.5-x86_64
-goto genericredhattext
-
-:centos6.4
-set base-url ${serverpath}/CentOS-6.4-x86_64
-goto genericredhat
-
-:centos6.3
-set base-url ${serverpath}/CentOS-6.3-x86_64
-goto genericredhat
-
-:centos5.4
-set base-url ${serverpath}/CentOS-5.4-x64
-goto genericredhat
-
-
-:fedora17
-set base-url ${serverpath}/Fedora-17-x86_64
+:fedora24
+set base-url ${serverpath}/Fedora-24-x86_64
 goto genericfedora
 
-:fedora18
-set base-url ${serverpath}/Fedora-18-x86_64
-goto genericfedora

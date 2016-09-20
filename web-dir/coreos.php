@@ -22,7 +22,7 @@ item --gap --                    ----------------------------------------------
 item          coreos-latest      CoreOS Latest Stable (online download)
 item          coreos-iso         CoreOS Latest ISO sanboot
 item          coreos-iso-local   CoreOS Latest ISO sanboot (Local)
-item          coreos-367.1.0     CoreOS 367.1.0
+item          coreos-1122.2.0    CoreOS 1122.2.0
 item --gap --                    -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -33,8 +33,8 @@ goto ${selected}
 imgfree
 chain ${serverpath}/boot/boot.php
 
-:coreos-367.1.0
-set coreosver 367.1.0
+:coreos-1122.2.0
+set coreosver 1122.2.0
 goto coreos-local
 
 :coreos-local
@@ -51,5 +51,5 @@ boot
 sanboot http://stable.release.core-os.net/amd64-usr/current/coreos_production_iso_image.iso
 
 :coreos-iso-local
-set coreosver 367.1.0
+set coreosver 1122.2.0
 sanboot  ${serverpath}/core-os/${coreosver}/coreos_production_iso_image.iso

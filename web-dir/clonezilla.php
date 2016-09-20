@@ -19,7 +19,7 @@ menu Install selection for ${distrotype} based distros
 item --gap --                    ------------- Return to main menu ------------
 item --key b  back               Back to main menu
 item --gap --                    ----------------------------------------------
-item          clonezilla         Boot Clonezilla 2.0.1 x64
+item          clonezilla         Boot Clonezilla 2.4.7-8
 item --gap --                    -------------------- END ----------------------
 
 choose --timeout ${menu-timeout} --default ${menu-default} selected || goto back
@@ -36,5 +36,5 @@ initrd ${base-url}/live/initrd.img
 boot
 
 :clonezilla
-set base-url ${serverpath}/clonezilla-live-2.0.1-15-amd64
+set base-url ${serverpath}/clonezilla-2.4.7-8
 goto genericzilla
