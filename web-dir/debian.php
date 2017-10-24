@@ -53,6 +53,11 @@ set arch .amd
 set base-url ${serverpath}/DEB-8.6.0
 goto genericdebian
 
+:debian90
+set arch .amd
+set base-url ${serverpath}/DEB-9.0
+goto genericdebian
+
 :ubuntu1604server
 set base-url ${serverpath}/U-16.04-SRV
 goto genericubuntu
